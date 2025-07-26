@@ -163,11 +163,10 @@ const DonghuaView = () => {
               alt={donghua.title}
             />
           </div>
-        </div>
 
-        <div className="lg:col-span-2 space-y-6">
-          <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+          {/* Status and Rating Section - moved below cover image */}
+          <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6 mt-6">
+            <div className="grid grid-cols-1 gap-4">
               <div>
                 <h3 className="text-sm font-medium text-gray-500 dark:text-gray-400">
                   Status
@@ -196,21 +195,6 @@ const DonghuaView = () => {
                   />
                 </div>
               </div>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div>
-                <h3 className="text-sm font-medium text-gray-500 dark:text-gray-400">
-                  Progress
-                </h3>
-                <div className="mt-1">
-                  <EpisodeTracker
-                    currentEpisode={donghua.watchedEpisodes}
-                    totalEpisodes={donghua.totalEpisodes}
-                    onUpdate={handleEpisodeUpdate}
-                  />
-                </div>
-              </div>
               <div>
                 <h3 className="text-sm font-medium text-gray-500 dark:text-gray-400">
                   Details
@@ -229,6 +213,35 @@ const DonghuaView = () => {
                     {donghua.genres.join(", ") || "None"}
                   </p>
                 </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Notes Section - moved below status and rating */}
+          {donghua.notes && (
+            <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6 mt-6">
+              <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-4">
+                My Notes
+              </h3>
+              <p className="text-gray-700 dark:text-gray-300 whitespace-pre-line">
+                {donghua.notes}
+              </p>
+            </div>
+          )}
+        </div>
+
+        <div className="lg:col-span-2 space-y-6">
+          <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+            <div>
+              <h3 className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-4">
+                Progress
+              </h3>
+              <div>
+                <EpisodeTracker
+                  currentEpisode={donghua.watchedEpisodes}
+                  totalEpisodes={donghua.totalEpisodes}
+                  onUpdate={handleEpisodeUpdate}
+                />
               </div>
             </div>
           </div>
@@ -268,17 +281,6 @@ const DonghuaView = () => {
                   manual)
                 </p>
               </div>
-            </div>
-          )}
-
-          {donghua.notes && (
-            <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
-              <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-4">
-                My Notes
-              </h3>
-              <p className="text-gray-700 dark:text-gray-300 whitespace-pre-line">
-                {donghua.notes}
-              </p>
             </div>
           )}
         </div>
